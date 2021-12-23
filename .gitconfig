@@ -1,18 +1,18 @@
 [user]
-	name = Ciaron Rider
-	email = ciaron@ridernator.com
-	signingkey = 30ECAEA428866ADCDEA24E1DA22095D64C74CF91
+    name = Ciaron Rider
+    email = ciaron@ridernator.com
+    signingkey = 30ECAEA428866ADCDEA24E1DA22095D64C74CF91
 [alias]
-	ci = commit
-	co = checkout
-	br = branch
-	st = status
-	fe = fetch --prune
-	gr = log --graph --oneline
-	gra = log --graph --oneline --all
-        dt = difftool
+    ci = commit
+    co = checkout
+    br = branch
+    st = status
+    fe = fetch --prune
+    gr = log --graph --oneline
+    gra = log --graph --oneline --all
+    dt = difftool
 [commit]
-	gpgsign = true
+    gpgsign = true
 [diff]
     tool = meld
 [difftool]
