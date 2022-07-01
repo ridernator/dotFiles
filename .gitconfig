@@ -2,6 +2,7 @@
     name = Ciaron Rider
     email = ciaron@ridernator.com
     signingkey = 30ECAEA428866ADCDEA24E1DA22095D64C74CF91
+
 [alias]
     ci = commit
     co = checkout
@@ -11,15 +12,22 @@
     gr = log --graph --oneline
     gra = log --graph --oneline --all
     dt = difftool
+    dtc = difftool --cached
+
 [commit]
     gpgsign = true
+
 [diff]
     tool = meld
+
 [difftool]
     prompt = false
+
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+
 [merge]
     tool = meld
+
 [mergetool "meld"]
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
