@@ -1,7 +1,7 @@
 [user]
     name = Ciaron Rider
     email = ciaron@ridernator.com
-    signingkey = 30ECAEA428866ADCDEA24E1DA22095D64C74CF91
+    signingkey = 215518DF87F2B7183DFB43D63F700E52BE4A79A8
 
 [alias]
     ci = commit
