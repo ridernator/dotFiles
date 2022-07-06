@@ -13,6 +13,7 @@
     gra = log --graph --oneline --all
     dt = difftool
     dtc = difftool --cached
+    superclean = !git clean -fdx "$(git rev-parse --show-toplevel)"
 
 [commit]
     gpgsign = true
