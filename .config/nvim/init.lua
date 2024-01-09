@@ -76,6 +76,9 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Pear Tree
+  'tmsvg/pear-tree',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -154,10 +157,10 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
 
@@ -168,7 +171,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
       },
@@ -237,13 +240,22 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+-- vim.o.mouse = 'a'
+
+vim.g.pear_tree_repeatable_expand = 0
+
+vim.o.scrolloff = 5
+
+vim.keymap.set({ 'n', 'v' }, '<C-Up>', '<PageUp>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-Down>', '<PageDown>', { silent = true })
+vim.keymap.set({ 'i' }, '<C-Up>', '<PageUp>', { silent = true })
+vim.keymap.set({ 'i' }, '<C-Down>', '<PageDown>', { silent = true })
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -274,6 +286,8 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
+-- Set relative line numbering
+vim.wo.relativenumber = true
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -598,6 +612,12 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- Trim whitespace on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
