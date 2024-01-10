@@ -254,8 +254,11 @@ vim.o.scrolloff = 5
 
 vim.keymap.set({ 'n', 'v' }, '<C-Up>', '<PageUp>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<C-Down>', '<PageDown>', { silent = true })
-vim.keymap.set({ 'i' }, '<C-Up>', '<PageUp>', { silent = true })
-vim.keymap.set({ 'i' }, '<C-Down>', '<PageDown>', { silent = true })
+vim.keymap.set('i', '<C-Up>', '<PageUp>', { silent = true })
+vim.keymap.set('i', '<C-Down>', '<PageDown>', { silent = true })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
