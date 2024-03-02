@@ -1,3 +1,5 @@
-require("keybindings")
+require('keybindings')
 
-require("plugin-manager")
+require('plugin-manager')
+
+require('lsp-servers')
