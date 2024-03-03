@@ -5,18 +5,18 @@ return {
     opts = {
         toggler = {
             -- Line-comment toggle keymap
-            line = '<C-#>',
+            line = '<C-/>',
 
             -- Block-comment toggle keymap
-            block = '<C-S-#>'
+            block = '<C-S-/>'
         },
 
         opleader = {
             -- Line-comment keymap
-            line = '<C-#>',
+            line = '<C-/>',
 
             --Block-comment keymap
-            block = '<C-S-#>'
+            block = '<C-S-/>'
         },
 
         mappings = {
