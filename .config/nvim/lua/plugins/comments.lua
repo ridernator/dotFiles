@@ -1,27 +1,8 @@
--- Comment code with "gc"
+-- Comment code
 return {
     'numToStr/Comment.nvim',
 
-    opts = {
-        toggler = {
-            -- Line-comment toggle keymap
-            line = '<C-/>',
+    opts = {},
 
-            -- Block-comment toggle keymap
-            block = '<C-S-/>'
-        },
-
-        opleader = {
-            -- Line-comment keymap
-            line = '<C-/>',
-
-            --Block-comment keymap
-            block = '<C-S-/>'
-        },
-
-        mappings = {
-            basic = true,
-            extra = false
-        }
-    }
+    lazy = false
 }
