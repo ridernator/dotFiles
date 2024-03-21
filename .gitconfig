@@ -12,25 +12,26 @@
     gra = log --graph --oneline --all
     dt = difftool
     dtc = difftool --cached
+    pull = pull --tags
     superclean = !git clean -fdx "$(git rev-parse --show-toplevel)"
 
 [commit]
     gpgsign = true
 
 [diff]
-    tool = meld
+    tool = nvim
 
 [difftool]
     prompt = false
 
-[difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
+[difftool "nvim"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [merge]
-    tool = meld
+    tool = nvim
 
-[mergetool "meld"]
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+[mergetool "nvim"]
+    cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c 'wincmd w' -c 'wincmd J'"
 
 [core]
     editor = nvim
