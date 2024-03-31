@@ -33,3 +33,7 @@ mason_lspconfig.setup_handlers {
         }
     end
 }
+
+vim.keymap.set('n', 'gf', function ()
+    vim.lsp.buf.code_action()
+end)

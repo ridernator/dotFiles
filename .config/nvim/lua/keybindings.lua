@@ -1,7 +1,3 @@
--- Set mapleader
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Enable relative line numbering
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -42,14 +38,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Remap window moves
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-Left>',  '<C-w>h')
 vim.keymap.set('n', '<C-Down>',  '<C-w>j')
 vim.keymap.set('n', '<C-Up>',    '<C-w>k')
 vim.keymap.set('n', '<C-Right>', '<C-w>l')
+
+-- Remap tab moves
+vim.keymap.set('n', '<A-Left>',  ':tabprevious<cr>')
+vim.keymap.set('n', '<A-Right>', ':tabnext<cr>')
 
 -- Window splitting
 -- vim.keymap.set('n', '<C-\\|>', '<C-w>s')
