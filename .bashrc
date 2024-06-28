@@ -22,5 +22,13 @@ fi
 alias g=git
 __git_complete g __git_main
 
+tstart() {
+    if test -d "/share/${1}"; then
+        tmux new-session -c "/share/${1}" -s "${1}"
+    else
+        echo "No such directory \"/share/${1}\""
+    fi
+}
+
 # PS1
 PS1='[\u@\h \W]\$ '
