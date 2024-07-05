@@ -50,3 +50,36 @@ vim.keymap.set('n', '<A-Right>', ':tabnext<cr>')
 -- Window splitting
 -- vim.keymap.set('n', '<C-\\|>', '<C-w>s')
 -- vim.keymap.set('n', '<C-_>', '<C-w>v')
+
+-- vim.opt_global.updatetime=1000
+-- vim.api.nvim_create_autocmd(
+--     "CursorHold",
+--     {
+--         pattern = {"*"},
+--         callback = function()
+--             vim.lsp.buf.document_highlight()
+--         end
+--     }
+-- )
+--
+-- vim.api.nvim_create_autocmd(
+--     "CursorHoldI",
+--     {
+--         pattern = {"*"},
+--         callback = function()
+--             vim.lsp.buf.document_highlight()
+--         end
+--     }
+-- )
+--
+-- vim.api.nvim_create_autocmd(
+--     "CursorMoved",
+--     {
+--         pattern = {"*"},
+--         callback = function()
+--             vim.lsp.buf.clear_references()
+--         end
+--     }
+-- )
+
+vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.rename()<CR>')
