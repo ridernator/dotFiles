@@ -21,8 +21,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- Don't scroll all the way to top or bottom of screen
 vim.o.scrolloff = 5
 
--- Disable search highlighting
-vim.o.hlsearch = false
+-- Enable search highlighting
+vim.o.hlsearch = true
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -47,9 +47,9 @@ vim.keymap.set('n', '<C-Right>', '<C-w>l')
 vim.keymap.set('n', '<A-Left>',  ':tabprevious<cr>')
 vim.keymap.set('n', '<A-Right>', ':tabnext<cr>')
 
--- Window splitting
--- vim.keymap.set('n', '<C-\\|>', '<C-w>s')
--- vim.keymap.set('n', '<C-_>', '<C-w>v')
+-- Creating splits
+vim.keymap.set('n', '-', ':split<cr>')
+vim.keymap.set('n', '\\', ':vsplit<cr>')
 
 -- vim.opt_global.updatetime=1000
 -- vim.api.nvim_create_autocmd(
@@ -82,4 +82,8 @@ vim.keymap.set('n', '<A-Right>', ':tabnext<cr>')
 --     }
 -- )
 
-vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>')
+vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>')
