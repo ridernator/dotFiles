@@ -49,6 +49,10 @@ vim.keymap.set('n', '<A-Right>', ':tabnext<CR>', {silent = true})
 
 -- Quick close
 vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
+vim.keymap.set('n', '<C-q>', ':quitall<CR>', {silent = true})
+
+-- Abandon git difftool
+vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
 
 -- vim.opt_global.updatetime=1000
 -- vim.api.nvim_create_autocmd(

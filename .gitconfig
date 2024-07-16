@@ -23,12 +23,14 @@
 
 [difftool]
     prompt = false
+    trustExitCode = true
 
 [difftool "nvim"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [merge]
     tool = nvim
+    trustExitCode = true
 
 [mergetool "nvim"]
     cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c 'wincmd w' -c 'wincmd J'"
