@@ -44,12 +44,11 @@ vim.keymap.set('n', '<C-Up>',    '<C-w>k')
 vim.keymap.set('n', '<C-Right>', '<C-w>l')
 
 -- Remap tab moves
-vim.keymap.set('n', '<A-Left>',  ':tabprevious<cr>')
-vim.keymap.set('n', '<A-Right>', ':tabnext<cr>')
+vim.keymap.set('n', '<A-Left>',  ':tabprevious<CR>', {silent = true})
+vim.keymap.set('n', '<A-Right>', ':tabnext<CR>', {silent = true})
 
--- Creating splits
-vim.keymap.set('n', '-', ':split<cr>')
-vim.keymap.set('n', '\\', ':vsplit<cr>')
+-- Quick close
+vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
 
 -- vim.opt_global.updatetime=1000
 -- vim.api.nvim_create_autocmd(
@@ -82,8 +81,8 @@ vim.keymap.set('n', '\\', ':vsplit<cr>')
 --     }
 -- )
 
-vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
-vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>')
-vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>')
+vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>', {silent = true})
+vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
+vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
+vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})
+vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>', {silent = true})
