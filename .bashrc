@@ -13,6 +13,7 @@ alias ll="ls -l --human-readable"
 alias vi=nvim
 alias vim=nvim
 alias tree="tree -C"
+alias cat="bat --paging=never"
 
 # Git stuff
 if test -e ~/.git-completion.bash; then
