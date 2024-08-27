@@ -3,9 +3,9 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- Set tabs to 4 spaces
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 1
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- Primeagen's move blocks
@@ -46,6 +46,8 @@ vim.keymap.set('n', '<C-Right>', '<C-w>l')
 -- Remap tab moves
 vim.keymap.set('n', '<A-Left>',  ':tabprevious<CR>', {silent = true})
 vim.keymap.set('n', '<A-Right>', ':tabnext<CR>', {silent = true})
+vim.keymap.set('n', 't<Right>', ':tabm +1<CR>', {silent = true})
+vim.keymap.set('n', 't<Left>', ':tabm -1<CR>', {silent = true})
 
 -- Quick close
 vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
@@ -90,3 +92,5 @@ vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
 vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
 vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})
 vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>', {silent = true})
+
+vim.api.nvim_set_option("clipboard","unnamed")
