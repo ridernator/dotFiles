@@ -13,7 +13,10 @@ alias ll="ls -l --human-readable"
 alias vi=nvim
 alias vim=nvim
 alias tree="tree -C"
-alias cat="bat --paging=never"
+
+if command -v bat &> /dev/null; then
+  alias cat="bat --paging=never"
+fi
 
 # Git stuff
 if test -e ~/.git-completion.bash; then
@@ -23,9 +26,10 @@ fi
 alias g=git
 __git_complete g __git_main
 
-tstart() {
+sesh() {
   if test -d "$1"; then
     sessionName="$(basename "$1")"
+
     if ! tmux has-session -t "$sessionName"; then
       cd "$1"
 
@@ -41,7 +45,7 @@ tstart() {
   fi
 }
 
-complete -A directory tstart
+complete -A directory sesh
 
 # PS1
 PS1='[\u@\h \W]\$ '
