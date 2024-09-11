@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -26,26 +22,50 @@ fi
 alias g=git
 __git_complete g __git_main
 
+markup() {
+  pandoc "$1" --from=gfm > /tmp/markup.html && firefox /tmp/markup.html &
+}
+
 sesh() {
-  if test -d "$1"; then
-    sessionName="$(basename "$1")"
+  local -r directory="${1:-.}"
 
-    if ! tmux has-session -t "$sessionName"; then
-      cd "$1"
+  if test -d "$directory"; then
+    sessionName="$(basename "$(readlink --canonicalize "$directory")" | tr .: _)"
 
-      tmux new-session -d -c "$1" -s "$sessionName"
+    if ! tmux has-session -t "$sessionName" &> /dev/null; then
+      tmux new-session -d -c "$directory" -s "$sessionName"
       tmux send-keys -t "$sessionName" nvim C-m
-      tmux new-window -c "$1" -t "$sessionName"
+      tmux new-window -c "$directory" -t "$sessionName"
       tmux previous-window -t "$sessionName"
     fi
 
     tmux attach-session -t "$sessionName"
   else
-    echo "No such directory \"$1\""
+    echo "No such directory \"$directory\""
   fi
 }
 
 complete -A directory sesh
+
+newScript() {
+  local -r scriptName="$1"
+
+  if test ! -e "$scriptName"; then
+    echo "#!/usr/bin/env bash"        >> "$scriptName"
+    echo                              >> "$scriptName"
+    echo "cd \"\$(dirname \"\$0\")\"" >> "$scriptName"
+    echo                              >> "$scriptName"
+    echo "main() {"                   >> "$scriptName"
+    echo "  :"                        >> "$scriptName"
+    echo "}"                          >> "$scriptName"
+    echo                              >> "$scriptName"
+    echo "main \"\$@\""               >> "$scriptName"
+
+    chmod +x "$scriptName"
+  else
+    echo "$scriptName already exists"
+  fi
+}
 
 # PS1
 PS1='[\u@\h \W]\$ '
