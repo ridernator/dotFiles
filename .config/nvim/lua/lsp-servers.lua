@@ -2,11 +2,13 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 local servers = {
-    -- Needs unzip
+    jdtls = {},
+    bashls = {},
     clangd = {},
     cmake = {},
-    -- Needs npm
-    bashls = {}
+    lua_ls = {},
+    pylsp = {},
+    vimls = {}
 }
 
 -- Setup neovim lua configuration
@@ -34,6 +36,8 @@ mason_lspconfig.setup_handlers {
     end
 }
 
-vim.keymap.set('n', 'gf', function ()
-    vim.lsp.buf.code_action()
-end)
+vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>', {silent = true})
+vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
+vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
+vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})
+vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>', {silent = true})

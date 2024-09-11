@@ -2,7 +2,7 @@
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- Set tabs to 4 spaces
+-- Set tabs to 2 spaces
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 1
 vim.opt.shiftwidth = 2
@@ -56,41 +56,4 @@ vim.keymap.set('n', '<C-q>', ':quitall<CR>', {silent = true})
 -- Abandon git difftool
 vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
 
--- vim.opt_global.updatetime=1000
--- vim.api.nvim_create_autocmd(
---     "CursorHold",
---     {
---         pattern = {"*"},
---         callback = function()
---             vim.lsp.buf.document_highlight()
---         end
---     }
--- )
---
--- vim.api.nvim_create_autocmd(
---     "CursorHoldI",
---     {
---         pattern = {"*"},
---         callback = function()
---             vim.lsp.buf.document_highlight()
---         end
---     }
--- )
---
--- vim.api.nvim_create_autocmd(
---     "CursorMoved",
---     {
---         pattern = {"*"},
---         callback = function()
---             vim.lsp.buf.clear_references()
---         end
---     }
--- )
-
-vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>', {silent = true})
-vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
-vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
-vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})
-vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>', {silent = true})
-
-vim.api.nvim_set_option("clipboard","unnamed")
+vim.api.nvim_set_option("clipboard", "unnamed")
