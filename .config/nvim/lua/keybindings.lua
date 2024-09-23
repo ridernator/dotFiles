@@ -1,12 +1,17 @@
 -- Enable relative line numbering
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Set tabs to 2 spaces
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 1
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.wrap = false
 
 -- Primeagen's move blocks
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -19,10 +24,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- Don't scroll all the way to top or bottom of screen
-vim.o.scrolloff = 5
+vim.opt.scrolloff = 999
 
 -- Enable search highlighting
-vim.o.hlsearch = true
+vim.opt.hlsearch = true
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -36,6 +41,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         }
     end
 })
+
+vim.opt.virtualedit = "block"
 
 -- Remap window moves
 vim.keymap.set('n', '<C-Left>',  '<C-w>h')
@@ -56,4 +63,6 @@ vim.keymap.set('n', '<C-q>', ':quitall<CR>', {silent = true})
 -- Abandon git difftool
 vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.opt.clipboard = "unnamedplus"
+
+vim.opt.termguicolors = true
