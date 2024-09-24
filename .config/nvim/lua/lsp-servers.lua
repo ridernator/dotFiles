@@ -36,7 +36,17 @@ mason_lspconfig.setup_handlers {
     end
 }
 
-vim.keymap.set('n', 'gR', ':lua vim.lsp.buf.rename()<CR>', {silent = true})
+vim.keymap.set("n", "gR", function()
+    vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+        callback = function()
+            local key = vim.api.nvim_replace_termcodes("<C-f>", true, false, true)
+            vim.api.nvim_feedkeys(key, "c", false)
+            vim.api.nvim_feedkeys("0C", "n", false)
+            return true
+        end,
+    })
+    vim.lsp.buf.rename()
+end, {silent = true})
 vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
 vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
 vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})

@@ -1,44 +1,45 @@
 -- Autocompletion
 return {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-        -- Snippet Engine & its associated nvim-cmp source
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip',
+  "hrsh7th/nvim-cmp",
 
-        -- Adds LSP completion capabilities
-        'hrsh7th/cmp-nvim-lsp',
+  dependencies = {
+    -- Snippet Engine & its associated nvim-cmp source
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
 
-        -- Adds a number of user-friendly snippets
-        'rafamadriz/friendly-snippets',
-    },
+    -- Adds LSP completion capabilities
+    "hrsh7th/cmp-nvim-lsp",
 
-    config = function()
-        local cmp = require 'cmp'
-        local luasnip = require 'luasnip'
+    -- Adds a number of user-friendly snippets
+    "rafamadriz/friendly-snippets"
+  },
 
-        require('luasnip.loaders.from_vscode').lazy_load()
+  config = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
 
-        luasnip.config.setup {}
+    require("luasnip.loaders.from_vscode").lazy_load()
 
-        cmp.setup {
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
+    luasnip.config.setup {}
 
-            mapping = cmp.mapping.preset.insert {
-                ['<Tab>'] = cmp.mapping.confirm {
-                    behavior = cmp.ConfirmBehavior.Insert,
-                    select = true,
-                }
-            },
+    cmp.setup {
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end
+      },
 
-            sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-            },
+      mapping = cmp.mapping.preset.insert {
+        ["<Tab>"] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
         }
-    end
+      },
+
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      }
+    }
+  end
 }
