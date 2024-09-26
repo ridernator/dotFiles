@@ -3,6 +3,13 @@
 
 xrdb ~/.Xdefaults
 
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll="ls -l --human-readable"
@@ -30,7 +37,9 @@ sesh() {
   local -r directory="${1:-.}"
 
   if test -d "$directory"; then
-    sessionName="$(basename "$(readlink --canonicalize "$directory")" | tr .: _)"
+    pushd "$directory" > /dev/null
+      sessionName="$(basename "$(git rev-parse --show-toplevel)" | tr .: _)"
+    popd > /dev/null
 
     if ! tmux has-session -t "$sessionName" &> /dev/null; then
       tmux new-session -d -c "$directory" -s "$sessionName"
