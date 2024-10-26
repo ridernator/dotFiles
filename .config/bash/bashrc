@@ -1,0 +1,5 @@
+for file in $(find ~/.config/bash -type f); do
+  if test "$file" != ~/.config/bash/bashrc; then
+    source "$file"
+  fi
+done
