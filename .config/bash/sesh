@@ -18,10 +18,18 @@ sesh() {
   if test -d "$directory"; then
     sessionName="$(basename "$directory")"
 
+    # Create global window if not already up
+    if ! tmux has-session -t global &> /dev/null; then
+      tmux new-session -d -c ~ -s global
+      tmux rename-window -t global global
+    fi
+
     if ! tmux has-session -t "$sessionName" &> /dev/null; then
       tmux new-session -d -c "$directory" -s "$sessionName"
       tmux send-keys -t "$sessionName" nvim C-m
-      tmux new-window -c "$directory" -t "$sessionName"
+      tmux rename-window -t "$sessionName" "editor"
+      tmux new-window -c "$directory" -t "$sessionName" -n "terminal"
+      tmux link-window -s global:global -t "$sessionName"
       tmux previous-window -t "$sessionName"
     fi
 
@@ -30,7 +38,6 @@ sesh() {
     else
       tmux attach-session -d -t "$sessionName"
     fi
-
   else
     echo "No such directory \"$directory\""
 
