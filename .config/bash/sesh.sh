@@ -61,3 +61,6 @@ _sesh_completion() {
 }
 
 complete -F _sesh_completion sesh
+
+alias s=sesh
+complete -F _sesh_completion s
