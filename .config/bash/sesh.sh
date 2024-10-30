@@ -18,19 +18,19 @@ sesh() {
   if test -d "$directory"; then
     sessionName="$(basename "$directory")"
 
-    # Create global window if not already up
-    if ! tmux has-session -t global &> /dev/null; then
-      tmux new-session -d -c ~ -s global
-      tmux rename-window -t global global
-    fi
+    # # Create global window if not already up
+    # if ! tmux has-session -t global &> /dev/null; then
+    #   tmux new-session -d -c ~ -s global
+    #   tmux rename-window -t global global
+    # fi
 
     if ! tmux has-session -t "$sessionName" &> /dev/null; then
       tmux new-session -d -c "$directory" -s "$sessionName"
       tmux send-keys -t "$sessionName" nvim C-m
       tmux rename-window -t "$sessionName" "editor"
       tmux new-window -c "$directory" -t "$sessionName" -n "terminal"
-      tmux link-window -s global:global -t "$sessionName"
-      tmux previous-window -t "$sessionName"
+      # tmux link-window -s global:global -t "$sessionName"
+      # tmux previous-window -t "$sessionName"
     fi
 
     if test -n "$TMUX"; then
@@ -60,7 +60,16 @@ _sesh_completion() {
   COMPREPLY=($(compgen -W "$(echo ${allWords[@]})" -- "${COMP_WORDS[1]}"))
 }
 
-complete -F _sesh_completion sesh
+if command -v fzf &> /dev/null; then
+  alias s="sesh \$(sesh -l | fzf)"
+  alias sn="sesh \$(find \"${SESH_WORK_DIR}\" -mindepth 1 -maxdepth 1 -type d -print0 | xargs --max-args=1 --null basename | fzf)"
 
-alias s=sesh
-complete -F _sesh_completion s
+  if command -v bind &> /dev/null; then
+    bind '"\C-\ ": "\C-as\C-j"'
+    bind '"\C-\ \C-\ ": "\C-asn\C-j"'
+  fi
+else
+  alias s=sesh
+  complete -F _sesh_completion sesh
+  complete -F _sesh_completion s
+fi

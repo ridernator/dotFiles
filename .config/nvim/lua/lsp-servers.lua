@@ -8,6 +8,7 @@ local servers = {
     cmake = {},
     lua_ls = {},
     pylsp = {},
+    lemminx = {},
     vimls = {}
 }
 

@@ -29,6 +29,8 @@ vim.opt.scrolloff = 999
 -- Enable search highlighting
 vim.opt.hlsearch = true
 
+vim.opt.cursorline = true
+
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = vim.api.nvim_create_augroup('highlight_yank', {}),
