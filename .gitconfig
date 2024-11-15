@@ -3,17 +3,18 @@
     email = ciaron@ridernator.com
 
 [alias]
-    ci = commit
-    co = checkout
-    br = branch
-    st = status
-    fe = fetch --prune
-    gr = log --graph --oneline
-    gra = log --graph --oneline --all
-    dt = difftool
-    dtc = difftool --cached
-    pull = pull --tags
-    superclean = !git clean -fdx "$(git rev-parse --show-toplevel)"
+  ci = commit
+  sw = switch
+  br = branch
+  st = status
+  fe = fetch --prune
+  gr = log --graph --abbrev-commit --decorate --format=format:"\"%C(#ffffff)%h%C(reset) - %C(bold #00bb00)%aD (%ar)%C(reset)%C(auto)%d%C(reset) %C(bold #009999)%s%C(reset) %C(dim #999999)- %an%C(reset)\""
+  gra = gr --all
+  dt = difftool
+  dtc = difftool --cached
+  pull = pull --tags
+  pushup = !git push --set-upstream origin "$(git branch --show-current)"
+  superclean = !git clean -fdx "$(git rev-parse --show-toplevel)"
 
 [commit]
     gpgsign = true
@@ -37,3 +38,10 @@
 
 [core]
     editor = nvim
+
+[color "decorate"]
+  head = "bold #00ffff"
+  branch = "bold #ff00ff"
+  tag = "bold #ffff00"
+  remoteBranch = "bold #ff0000"
+  stash = "bold #ffffff"

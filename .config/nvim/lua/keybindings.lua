@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank {
             higroup = 'IncSearch',
-            timeout = 500
+            timeout = 1000
         }
     end
 })
@@ -68,3 +68,10 @@ vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true
+
+vim.opt.mouse = ""
+
+vim.cmd.highlight('Normal guibg=none')
+vim.cmd.highlight('TabLine guibg=none')
+vim.cmd.highlight('TabLineFill guibg=none')
+vim.cmd.highlight('TabLineSel guibg=none')
