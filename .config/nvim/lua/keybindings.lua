@@ -75,3 +75,6 @@ vim.cmd.highlight('Normal guibg=none')
 vim.cmd.highlight('TabLine guibg=none')
 vim.cmd.highlight('TabLineFill guibg=none')
 vim.cmd.highlight('TabLineSel guibg=none')
+
+-- Save time writing std::
+vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
