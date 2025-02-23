@@ -45,31 +45,23 @@ sesh() {
   fi
 }
 
-_sesh_completion() {
-  if test ${#COMP_WORDS[@]} -ne 2; then
-    return
-  fi
+# _sesh_completion() {
+#   if test ${#COMP_WORDS[@]} -ne 2; then
+#     return
+#   fi
+#
+#   local -a allWords=("-l");
+#   for directory in ${SESH_WORK_DIR}/*; do
+#     if test -d "$directory"; then
+#       allWords+=("$(basename "$directory")")
+#     fi
+#   done
+#
+#   COMPREPLY=($(compgen -W "$(echo ${allWords[@]})" -- "${COMP_WORDS[1]}"))
+# }
 
-  local -a allWords=("-l");
-  for directory in ${SESH_WORK_DIR}/*; do
-    if test -d "$directory"; then
-      allWords+=("$(basename "$directory")")
-    fi
-  done
+alias s="sesh \$(sesh -l | fzf)"
+alias sn="sesh \$(find \"${SESH_WORK_DIR}\" -mindepth 1 -maxdepth 1 -type d -print0 | xargs --max-args=1 --null basename | fzf)"
 
-  COMPREPLY=($(compgen -W "$(echo ${allWords[@]})" -- "${COMP_WORDS[1]}"))
-}
-
-if command -v fzf &> /dev/null; then
-  alias s="sesh \$(sesh -l | fzf)"
-  alias sn="sesh \$(find \"${SESH_WORK_DIR}\" -mindepth 1 -maxdepth 1 -type d -print0 | xargs --max-args=1 --null basename | fzf)"
-
-  if command -v bind &> /dev/null; then
-    bind '"\C-\ ": "\C-as\C-j"'
-    bind '"\C-\ \C-\ ": "\C-asn\C-j"'
-  fi
-else
-  alias s=sesh
-  complete -F _sesh_completion sesh
-  complete -F _sesh_completion s
-fi
+bind '"\C-\ ": "\C-as\C-j"'
+bind '"\C-\ \C-\ ": "\C-asn\C-j"'

@@ -1,9 +1,3 @@
--- Set mapleader
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+require("config.keymaps")
 
-require('plugin-manager')
-
-require('lsp-servers')
-
-require('keybindings')
+require("config.lazy")

@@ -1,45 +1,22 @@
--- Autocompletion
 return {
-  "hrsh7th/nvim-cmp",
+  "saghen/blink.cmp",
 
-  dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
+  version = "*",
 
-    -- Adds LSP completion capabilities
-    "hrsh7th/cmp-nvim-lsp",
+  dependencies = "rafamadriz/friendly-snippets",
 
-    -- Adds a number of user-friendly snippets
-    "rafamadriz/friendly-snippets"
-  },
+  opts = {
+    keymap = {
+      preset = "super-tab"
+    },
 
-  config = function()
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = "mono"
+    },
 
-    require("luasnip.loaders.from_vscode").lazy_load()
-
-    luasnip.config.setup {}
-
-    cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end
-      },
-
-      mapping = cmp.mapping.preset.insert {
-        ["<Tab>"] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        }
-      },
-
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-      }
+    signature = {
+      enabled = true
     }
-  end
+  }
 }

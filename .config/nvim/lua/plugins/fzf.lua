@@ -1,12 +1,13 @@
 return {
-    "ibhagwan/fzf-lua",
+  "ibhagwan/fzf-lua",
 
-    dependencies = { "junegunn/fzf", build = "./install --bin" },
+  dependencies = { "junegunn/fzf", build = "./install --bin" },
 
-    config = function()
-        require("fzf-lua").setup({})
+  init = function()
+    require("fzf-lua").setup({})
 
-        vim.keymap.set("n", "<c-p>", require('fzf-lua').git_files, { desc = "Fzf Files" })
-        vim.keymap.set("n", "<c-f>", require('fzf-lua').grep, { desc = "Rg Files" })
-    end
+    vim.keymap.set("n", "<leader><leader>", require('fzf-lua').git_files, { desc = "Fzf Files" })
+    vim.keymap.set("n", "<leader>p", require('fzf-lua').files, { desc = "Files" })
+    vim.keymap.set("n", "<leader>f", require('fzf-lua').grep, { desc = "Rg Files" })
+  end
 }

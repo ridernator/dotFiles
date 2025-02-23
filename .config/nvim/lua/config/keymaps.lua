@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 -- Enable relative line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -19,8 +21,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Trim whitespace on save
 vim.api.nvim_create_autocmd('BufWritePre', {
-    pattern = '*',
-    command = [[%s/\s\+$//e]]
+  pattern = '*',
+  command = [[%s/\s\+$//e]]
 })
 
 -- Don't scroll all the way to top or bottom of screen
@@ -29,19 +31,21 @@ vim.opt.scrolloff = 999
 -- Enable search highlighting
 vim.opt.hlsearch = true
 
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
+
+vim.o.cmdheight = 0
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('highlight_yank', {}),
-    desc = 'Hightlight selection on yank',
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank {
-            higroup = 'IncSearch',
-            timeout = 1000
-        }
-    end
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank {
+      higroup = 'IncSearch',
+      timeout = 500
+    }
+  end
 })
 
 vim.opt.virtualedit = "block"
@@ -55,8 +59,8 @@ vim.keymap.set('n', '<C-Right>', '<C-w>l')
 -- Remap tab moves
 vim.keymap.set('n', '<A-Left>',  ':tabprevious<CR>', {silent = true})
 vim.keymap.set('n', '<A-Right>', ':tabnext<CR>', {silent = true})
-vim.keymap.set('n', 't<Right>', ':tabm +1<CR>', {silent = true})
-vim.keymap.set('n', 't<Left>', ':tabm -1<CR>', {silent = true})
+vim.keymap.set('n', 't<Right>', ':tabmove +1<CR>', {silent = true})
+vim.keymap.set('n', 't<Left>', ':tabmove -1<CR>', {silent = true})
 
 -- Quick close
 vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
@@ -71,7 +75,8 @@ vim.opt.termguicolors = true
 
 vim.opt.mouse = ""
 
-vim.cmd.highlight('Normal guibg=none')
-vim.cmd.highlight('TabLine guibg=none')
-vim.cmd.highlight('TabLineFill guibg=none')
-vim.cmd.highlight('TabLineSel guibg=none')
+-- Save time writing std::
+vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
+
+-- Autoclose braces
+vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})

@@ -1,6 +1,6 @@
 [user]
-    name = Ciaron Rider
-    email = ciaron@ridernator.com
+  name = Ciaron Rider
+  email = ciaron@ridernator.com
 
 [alias]
   ci = commit
@@ -17,27 +17,27 @@
   superclean = !git clean -fdx "$(git rev-parse --show-toplevel)"
 
 [commit]
-    gpgsign = true
+  gpgsign = true
 
 [diff]
-    tool = nvim
+  tool = nvim
 
 [difftool]
-    prompt = false
-    trustExitCode = true
+  prompt = false
+  trustExitCode = true
 
 [difftool "nvim"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [merge]
-    tool = nvim
-    trustExitCode = true
+  tool = nvim
+  trustExitCode = true
 
 [mergetool "nvim"]
-    cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c 'wincmd w' -c 'wincmd J'"
+  cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c 'wincmd w' -c 'wincmd J'"
 
 [core]
-    editor = nvim
+  editor = nvim
 
 [color "decorate"]
   head = "bold #00ffff"
