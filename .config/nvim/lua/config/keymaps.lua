@@ -80,3 +80,8 @@ vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
 
 -- Autoclose braces
 vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})
+
+vim.cmd.highlight('Normal guibg=none')
+vim.cmd.highlight('TabLine guibg=none')
+vim.cmd.highlight('TabLineFill guibg=none')
+vim.cmd.highlight('TabLineSel guibg=none')
