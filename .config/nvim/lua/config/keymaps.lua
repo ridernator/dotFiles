@@ -25,9 +25,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = [[%s/\s\+$//e]]
 })
 
--- Don't scroll all the way to top or bottom of screen
-vim.opt.scrolloff = 999
-
 -- Enable search highlighting
 vim.opt.hlsearch = true
 
