@@ -9,9 +9,10 @@ return {
   init = function()
     vim.cmd.colorscheme("gruvbox")
 
-    vim.cmd.highlight('Normal guibg=none')
-    vim.cmd.highlight('TabLine guibg=none')
-    vim.cmd.highlight('TabLineFill guibg=none')
-    vim.cmd.highlight('TabLineSel guibg=none')
+    vim.cmd.highlight("Normal guibg=none")
+    vim.cmd.highlight("TabLine guibg=none")
+    vim.cmd.highlight("TabLineFill guibg=none")
+    vim.cmd.highlight("TabLineSel guibg=none")
+    vim.cmd.highlight("StatusLine guibg=none gui=none guifg=white")
   end
 }
