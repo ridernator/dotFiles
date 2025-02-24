@@ -3,5 +3,11 @@ return {
 
   lazy = false,
 
-  opts = {}
+  init = function()
+    vim.o.scrolloff = 1000
+  end;
+
+  opts = {
+    allow_scroll_move = false,
+  }
 }
