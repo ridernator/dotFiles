@@ -8,6 +8,6 @@ return {
   init = function()
     require("nvim-tree").setup()
 
-    vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
+    vim.keymap.set("n", "gt", ":NvimTreeToggle<CR>", { silent = true })
   end
 }

@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 -- Enable relative line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -28,7 +26,12 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- Enable search highlighting
 vim.opt.hlsearch = true
 
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+vim.opt.signcolumn = "yes:1"
+
+-- Disable commandline
+vim.o.cmdheight = 0
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {

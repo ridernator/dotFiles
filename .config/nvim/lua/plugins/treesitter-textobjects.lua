@@ -22,12 +22,10 @@ return {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
-            ["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
-            ["]p"] = { query = "@parameter.inner", desc = "Next parameter start" },
+            ["m"] = { query = "@function.outer", desc = "Next method/function def start" },
           },
           goto_previous_start = {
-            ["[m"] = { query = "@function.outer", desc = "Prev method/function def start" },
-            ["[p"] = { query = "@parameter.inner", desc = "Prev parameter start" },
+            ["n"] = { query = "@function.outer", desc = "Prev method/function def start" },
           },
         },
       },
