@@ -73,6 +73,8 @@ vim.opt.termguicolors = true
 
 vim.opt.mouse = ""
 
+vim.opt.scrolloff = math.floor(vim.api.nvim_win_get_height(0) / 2)
+
 -- Save time writing std::
 vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
 
