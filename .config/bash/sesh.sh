@@ -26,7 +26,7 @@ sesh() {
 
     if ! tmux has-session -t "$sessionName" &> /dev/null; then
       tmux new-session -d -c "$directory" -s "$sessionName"
-      tmux send-keys -t "$sessionName" nvim '+FzfLua git_files'C-m
+      tmux send-keys -t "$sessionName" nvim '+FzfLua git_files' C-m
       tmux rename-window -t "$sessionName" "editor"
       tmux new-window -c "$directory" -t "$sessionName" -n "terminal"
       # tmux link-window -s global:global -t "$sessionName"
