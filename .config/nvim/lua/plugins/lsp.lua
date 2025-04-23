@@ -30,7 +30,7 @@ return {
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     -- Ensure the servers above are installed
     local mason_lspconfig = require 'mason-lspconfig'
@@ -50,6 +50,15 @@ return {
       end
     }
 
+    vim.diagnostic.config({
+      float = true,
+      severity_sort = false,
+      signs = true,
+      underline = false,
+      update_in_insert = true,
+      virtual_text = true
+    })
+
     vim.keymap.set("n", "gR", function()
       vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
         callback = function()
@@ -63,9 +72,13 @@ return {
     end, {silent = true})
 
     vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {silent = true})
+
     vim.keymap.set('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', {silent = true})
+
     vim.keymap.set('n', 'gr', ':lua vim.lsp.buf.references()<CR>', {silent = true})
+
     vim.keymap.set('n', 'ga', ':lua vim.lsp.buf.code_action()<CR>', {silent = true})
+
     vim.keymap.set('n', 'gh', ':ClangdSwitchSourceHeader<CR>', {silent = true})
 
     vim.keymap.set("n", "gH", function()
@@ -110,5 +123,13 @@ return {
         vim.cmd.edit(vim.uri_to_fname(result))
       end, 0)
     end, {silent = true})
+
+    vim.keymap.set('n', 'go', function()
+      if vim.diagnostic.config().virtual_text then
+        vim.diagnostic.config({ virtual_text = false })
+      else
+        vim.diagnostic.config({ virtual_text = true })
+      end
+    end)
   end
 }

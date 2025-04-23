@@ -18,17 +18,7 @@ return {
             ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
           },
         },
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_next_start = {
-            ["m"] = { query = "@function.outer", desc = "Next method/function def start" },
-          },
-          goto_previous_start = {
-            ["n"] = { query = "@function.outer", desc = "Prev method/function def start" },
-          },
-        },
-      },
+      }
     })
 
     local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")

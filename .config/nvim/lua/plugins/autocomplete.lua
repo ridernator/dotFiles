@@ -1,55 +1,44 @@
 return {
-  "ridernator/blink.cmp",
+  "hrsh7th/nvim-cmp",
 
-  branch = "not_in_word",
+  dependencies = {
+    -- Snippet Engine & its associated nvim-cmp source
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
 
-  build = "cargo build --release",
+    -- Adds LSP completion capabilities
+    "hrsh7th/cmp-nvim-lsp",
 
-  dependencies = "rafamadriz/friendly-snippets",
+    -- Adds a number of user-friendly snippets
+    "rafamadriz/friendly-snippets"
+  },
 
-  opts = {
-    keymap = {
-      preset = "super-tab"
-    },
+  config = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
 
-    appearance = {
-      use_nvim_cmp_as_default = true,
-      nerd_font_variant = "mono"
-    },
+    require("luasnip.loaders.from_vscode").lazy_load()
 
-    completion = {
-      list = {
-        selection = {
-          preselect = true,
-          auto_insert = false
+    luasnip.config.setup {}
+
+    cmp.setup {
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end
+      },
+
+      mapping = cmp.mapping.preset.insert {
+        ["<Tab>"] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
         }
       },
 
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 0,
-        update_delay_ms = 0,
-
-        window = {
-          border = "rounded"
-        }
-      },
-
-      menu = {
-        border = "rounded"
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
       }
-    },
-
-    signature = {
-      window = {
-        border = "rounded"
-      },
-
-      enabled = true
-    },
-
-    fuzzy = {
-      implementation = "lua"
     }
-  }
+  end
 }
