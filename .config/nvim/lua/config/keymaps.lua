@@ -31,7 +31,7 @@ vim.opt.cursorlineopt = "number"
 vim.opt.signcolumn = "yes:1"
 
 -- Disable commandline
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -80,3 +80,5 @@ vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
 
 -- Autoclose braces
 vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})
+
+vim.keymap.set('n', '<C-D>', ':silent !gromit-mpx --active<CR>', {silent = true})
