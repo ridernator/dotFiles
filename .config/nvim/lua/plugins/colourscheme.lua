@@ -30,7 +30,5 @@ return {
     vim.cmd.highlight("DiagnosticSignWarn guibg=none guifg=orange gui=bold")
     vim.cmd.highlight("DiagnosticSignInfo guibg=none guifg=white gui=bold")
     vim.cmd.highlight("DiagnosticSignHint guibg=none guifg=white gui=bold")
-    -- vim.cmd.highlight("StatusLine guibg=black guifg=green")
-    -- vim.cmd.highlight("StatusLineNC guibg=black guifg=grey")
   end
 }
