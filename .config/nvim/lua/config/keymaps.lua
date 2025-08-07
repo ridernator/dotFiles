@@ -30,13 +30,14 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.signcolumn = "yes:1"
 
--- Disable commandline
--- vim.o.cmdheight = 0
+-- No need to put mode at bottom
+vim.opt.showmode = false
+vim.opt.showcmd = false
 
 -- Turn on highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_yank', {}),
-  desc = 'Hightlight selection on yank',
+  desc = 'Highlight selection on yank',
   pattern = '*',
   callback = function()
     vim.highlight.on_yank {
@@ -82,3 +83,8 @@ vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
 vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})
 
 vim.keymap.set('n', '<C-D>', ':silent !gromit-mpx --active<CR>', {silent = true})
+
+vim.keymap.set('n', 'q<Down>', ':cnext<CR>', {silent = true})
+vim.keymap.set('n', 'q<Up>', ':cprev<CR>', {silent = true})
+vim.keymap.set('n', 'q<Left>', ':cclose<CR>', {silent = true})
+vim.keymap.set('n', 'q<Right>', ':copen<CR>', {silent = true})
