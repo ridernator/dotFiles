@@ -12,7 +12,7 @@ return {
     vim.cmd.highlight("Normal guibg=none")
     vim.cmd.highlight("TabLine guibg=none")
     vim.cmd.highlight("TabLineFill guibg=none")
-    vim.cmd.highlight("TabLineSel guibg=none")
+    vim.cmd.highlight("TabLineSel guifg=white guibg=green")
     vim.cmd.highlight("BlinkCmpScrollBarThumb guibg=white guifg=none")
     vim.cmd.highlight("BlinkCmpMenu guibg=none guifg=white")
     vim.cmd.highlight("BlinkCmpMenuBorder guibg=none guifg=white")
