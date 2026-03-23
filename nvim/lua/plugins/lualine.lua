@@ -8,8 +8,27 @@ return {
   init = function ()
     require("lualine").setup({
       options = {
-        theme = "codedark"
-      }
+        theme = "rider"
+      },
+      sections = {
+        lualine_c = {
+          {
+            'filename',
+            path = 1
+          }
+        }
+      },
+      -- tabline = {
+      --   lualine_a = {
+      --     {
+      --       'tabs',
+      --       tab_max_length = 40,
+      --       max_length = vim.opt.columns,
+      --       mode = 1,
+      --       path = 1,
+      --     }
+      --   }
+      -- }
     })
-  end,
+  end
 }

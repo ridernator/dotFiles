@@ -25,6 +25,7 @@ return {
     vim.cmd.highlight("BlinkCmpSignatureHelpBorder guibg=none guifg=white")
     vim.cmd.highlight("BlinkCmpSignatureHelpSelection guibg=none guifg=green")
     vim.cmd.highlight("SignColumn guibg=none guifg=white")
+    vim.cmd.highlight("StatusLine guibg=none guifg=none")
     vim.cmd.highlight("CursorLineNr guibg=none guifg=white gui=bold")
     vim.cmd.highlight("DiagnosticSignError guibg=none guifg=red gui=bold")
     vim.cmd.highlight("DiagnosticSignWarn guibg=none guifg=orange gui=bold")
