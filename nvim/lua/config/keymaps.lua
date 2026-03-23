@@ -30,6 +30,8 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.signcolumn = "yes:1"
 
+vim.opt.cmdheight = 0
+
 -- No need to put mode at bottom
 vim.opt.showmode = false
 vim.opt.showcmd = false
