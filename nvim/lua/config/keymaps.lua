@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.opt.hlsearch = true
 
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
+vim.opt.cursorlineopt = "both"
 vim.opt.signcolumn = "yes:1"
 
 vim.opt.cmdheight = 0
@@ -49,6 +49,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end
 })
 
+-- Use K to toggle lsp hover
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        vim.keymap.set("n", "K", function()
+            local base_win_id = vim.api.nvim_get_current_win()
+            local windows = vim.api.nvim_tabpage_list_wins(0)
+            for _, win_id in ipairs(windows) do
+                if win_id ~= base_win_id then
+                    local win_cfg = vim.api.nvim_win_get_config(win_id)
+                    if win_cfg.relative == "win" and win_cfg.win == base_win_id then
+                        vim.api.nvim_win_close(win_id, {})
+                        return
+                    end
+                end
+            end
+            vim.lsp.buf.hover({border = 'rounded'})
+        end, { remap = false, silent = true, buffer = ev.buf, desc = "Toggle hover" })
+        -- Probably lots of other keymaps...
+    end
+})
+
 vim.opt.virtualedit = "block"
 
 -- Remap window moves
@@ -67,6 +88,10 @@ vim.keymap.set('n', 't<Left>', ':tabmove -1<CR>', {silent = true})
 vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
 vim.keymap.set('n', '<C-q>', ':quitall<CR>', {silent = true})
 
+-- Remap pageup and down to Crtl U and D
+vim.keymap.set('n', '<PageUp>', '<C-u>', {silent = true})
+vim.keymap.set('n', '<PageDown>', '<C-d>', {silent = true})
+
 -- Abandon git difftool
 vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
 
@@ -84,7 +109,9 @@ vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
 -- Autoclose braces
 vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})
 
-vim.keymap.set('n', '<C-D>', ':silent !gromit-mpx --active<CR>', {silent = true})
+-- Drawing
+vim.keymap.set('n', '<C-A-d>', ':silent !gromit-mpx --active<CR>', {silent = true})
+vim.keymap.set('n', '<C-A-d><C-A-n>', ':tabe<CR>:silent !gromit-mpx --active<CR>:quit<CR>', {silent = true})
 
 vim.keymap.set('n', 'q<Down>', ':cnext<CR>', {silent = true})
 vim.keymap.set('n', 'q<Up>', ':cprev<CR>', {silent = true})

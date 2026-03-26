@@ -10,6 +10,7 @@ return {
     vim.cmd.colorscheme("gruvbox")
 
     vim.cmd.highlight("Normal guibg=none")
+    vim.cmd.highlight("NormalFloat guibg=none")
     vim.cmd.highlight("TabLine guibg=none")
     vim.cmd.highlight("TabLineFill guibg=none")
     vim.cmd.highlight("TabLineSel guifg=white guibg=green")
@@ -27,6 +28,7 @@ return {
     vim.cmd.highlight("SignColumn guibg=none guifg=white")
     vim.cmd.highlight("StatusLine guibg=none guifg=none")
     vim.cmd.highlight("CursorLineNr guibg=none guifg=white gui=bold")
+    vim.cmd.highlight("CursorLine guibg=#202020 ctermbg=none")
     vim.cmd.highlight("DiagnosticSignError guibg=none guifg=red gui=bold")
     vim.cmd.highlight("DiagnosticSignWarn guibg=none guifg=orange gui=bold")
     vim.cmd.highlight("DiagnosticSignInfo guibg=none guifg=white gui=bold")
