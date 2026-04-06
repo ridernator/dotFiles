@@ -1,0 +1,131 @@
+-- Enable relative line numbering
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Set tabs to 2 spaces
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 1
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+-- New splits on botom and right
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- Line wrapping on left right
+vim.opt.whichwrap="b,s,[,]"
+
+-- No line wrapping
+vim.opt.wrap = false
+
+-- Primeagen's move blocks
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Trim whitespace on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  command = [[%s/\s\+$//e]]
+})
+
+-- Enable search highlighting
+vim.opt.hlsearch = true
+
+-- Cursor line higlighting
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both"
+vim.opt.signcolumn = "yes:1"
+
+-- Hide command line
+vim.opt.cmdheight = 0
+
+-- No need to put mode at bottom
+vim.opt.showmode = false
+vim.opt.showcmd = false
+
+-- Turn on highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Highlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank {
+      higroup = 'IncSearch',
+      timeout = 500
+    }
+  end
+})
+
+-- Use K to toggle lsp hover
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        vim.keymap.set("n", "K", function()
+            local base_win_id = vim.api.nvim_get_current_win()
+            local windows = vim.api.nvim_tabpage_list_wins(0)
+            for _, win_id in ipairs(windows) do
+                if win_id ~= base_win_id then
+                    local win_cfg = vim.api.nvim_win_get_config(win_id)
+                    if win_cfg.relative == "win" and win_cfg.win == base_win_id then
+                        vim.api.nvim_win_close(win_id, {})
+                        return
+                    end
+                end
+            end
+            vim.lsp.buf.hover({border = 'rounded'})
+        end, { remap = false, silent = true, buffer = ev.buf, desc = "Toggle hover" })
+        -- Probably lots of other keymaps...
+    end
+})
+
+vim.opt.virtualedit = "block"
+
+-- Remap window moves
+vim.keymap.set('n', '<C-Left>',  '<C-w>h')
+vim.keymap.set('n', '<C-Down>',  '<C-w>j')
+vim.keymap.set('n', '<C-Up>',    '<C-w>k')
+vim.keymap.set('n', '<C-Right>', '<C-w>l')
+
+-- Remap tab moves
+vim.keymap.set('n', '<A-Left>',  ':tabprevious<CR>', {silent = true})
+vim.keymap.set('n', '<A-Right>', ':tabnext<CR>', {silent = true})
+vim.keymap.set('n', 't<Right>', ':tabmove +1<CR>', {silent = true})
+vim.keymap.set('n', 't<Left>', ':tabmove -1<CR>', {silent = true})
+
+-- Quick close
+vim.keymap.set('n', 'Q', ':quit<CR>', {silent = true})
+vim.keymap.set('n', '<C-q>', ':quitall<CR>', {silent = true})
+
+-- Remap pageup and down to Crtl U and D
+vim.keymap.set('n', '<PageUp>', '<C-u>', {silent = true})
+vim.keymap.set('n', '<PageDown>', '<C-d>', {silent = true})
+
+-- Abandon git difftool
+vim.keymap.set('n', 'dq', ':cquit<CR>', {silent = true})
+
+-- Shared clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- 24-bit colours
+vim.opt.termguicolors = true
+
+-- Disable mouse
+vim.opt.mouse = ""
+
+-- Put current line in centre
+vim.opt.scrolloff = 999
+
+-- Save time writing std::
+vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
+
+-- Autoclose braces
+vim.keymap.set('i', '{<CR>', '{<CR><CR>}<Esc><Up>S', {silent = true})
+
+-- Drawing
+vim.keymap.set('n', '<C-A-d>', ':silent !gromit-mpx --active<CR>', {silent = true})
+vim.keymap.set('n', '<C-A-d><C-A-n>', ':tabe<CR>:silent !gromit-mpx --active<CR>:quit<CR>', {silent = true})
+
+-- Quickfix navigation
+vim.keymap.set('n', 'q<Down>', ':cnext<CR>', {silent = true})
+vim.keymap.set('n', 'q<Up>', ':cprev<CR>', {silent = true})
+vim.keymap.set('n', 'q<Left>', ':cclose<CR>', {silent = true})
+vim.keymap.set('n', 'q<Right>', ':copen<CR>', {silent = true})
