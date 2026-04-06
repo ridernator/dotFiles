@@ -1,5 +1,7 @@
 vim.pack.add({ 'https://github.com/lewis6991/gitsigns.nvim' })
 
+require('gitsigns').setup()
+
 vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>',      {silent = true})
 vim.keymap.set('n', 'gB', ':Gitsigns blame<CR>',           {silent = true})
 vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>',       {silent = true})
