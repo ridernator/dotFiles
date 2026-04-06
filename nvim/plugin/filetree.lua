@@ -1,6 +1,0 @@
-vim.pack.add({ 'https://github.com/nvim-tree/nvim-web-devicons',
-               'https://github.com/nvim-tree/nvim-tree.lua' })
-
-require('nvim-tree').setup()
-
-vim.keymap.set("n", "gt", ":NvimTreeToggle<CR>", { silent = true })
