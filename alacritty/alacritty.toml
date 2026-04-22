@@ -20,6 +20,7 @@
   bindings = [
     { key = "F1", chars = "s\n" },
     { key = "F2", chars = "sn\n" },
-    { key = "F11", action = "ToggleFullscreen" }
+    { key = "F11", action = "ToggleFullscreen" },
+    { key = "Insert", mods = "Control", action = "Copy" }
   ]
 
