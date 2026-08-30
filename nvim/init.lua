@@ -37,7 +37,7 @@ vim.opt.cursorlineopt = "both"
 vim.opt.signcolumn = "yes:1"
 
 -- Hide command line
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 -- No need to put mode at bottom
 vim.opt.showmode = false
@@ -112,7 +112,7 @@ vim.opt.termguicolors = true
 vim.opt.mouse = ""
 
 -- Put current line in centre
-vim.opt.scrolloff = 999
+-- vim.opt.scrolloff = 999
 
 -- Save time writing std::
 vim.keymap.set('i', '<C-s>', 'std::', {silent = true})
